@@ -6,7 +6,7 @@ class GenerateCommand implements CommandInterface {
 
   @override
   Future<void> execute() async{
-    stdout.write('GenerateCommand');
+    stdout.writeln('Generate Command in console');
 
     exit(0);
   }

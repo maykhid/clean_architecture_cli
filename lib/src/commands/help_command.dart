@@ -5,7 +5,7 @@ import 'command_interface.dart';
 class HelpCommand implements CommandInterface {
   @override
   Future<void> execute() async {
-    stdout.write('HelpCommand');
+    stdout.writeln('Help Command in console');
 
     exit(0);
   }

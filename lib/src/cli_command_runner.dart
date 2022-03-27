@@ -14,25 +14,23 @@ class CliCommandRunner {
 
     final results = parser.parse(arguments);
 
-    if (results.command == null) {
-      print('No command specified');
-      return;
-    }
+    if (results.command != null && results.command!.name != null) {
+      CommandInterface? command;
 
-    final commandName = results.command!.name;
-    CommandInterface? command;
-
-    switch (commandName) {
-      case 'help':
-        command = HelpCommand();
-        break;
-      case 'generate':
-        command = GenerateCommand();
-        break;
-      default:
-        _errorAndExit(commandName);
+      switch (results.command!.name) {
+        case 'help':
+          command = HelpCommand();
+          break;
+        case 'generate':
+          command = GenerateCommand();
+          break;
+        default:
+          _errorAndExit(results.command!.name);
+      }
+      command!.execute();
+    } else {
+      _errorAndExit();
     }
-    command!.execute();
   }
 }
 
