@@ -10,6 +10,8 @@ abstract class DirectoryCreatorInterface {
   Directory get coreDir;
 
   Directory get featuresDir;
+
+  Directory get libDir;
 }
 
 abstract class FileCreatorInterface {

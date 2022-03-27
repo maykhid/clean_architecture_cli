@@ -3,8 +3,17 @@ import 'dart:io';
 import '../creator_interfaces.dart';
 
 class DirectoryCreatorImpl implements DirectoryCreatorInterface {
+  // top folders names
   final _core = 'core';
   final _feature = 'feature';
+  final _libDir = 'lib';
+  
+
+  // sub-folders
+  static const error = 'error';
+  static const network = 'network';
+  static const usecases = 'usecases';
+  static const util = 'util';
 
   late final String basePath;
 
@@ -15,10 +24,16 @@ class DirectoryCreatorImpl implements DirectoryCreatorInterface {
   Directory get featuresDir => Directory('$basePath/$_feature');
 
   @override
+  Directory get libDir => Directory(_libDir);
+
+  // static get err => _error;
+  // get network => _network;
+  // get usecases => _usecases;
+  // get util => _util;
+
+  @override
   Future<bool> createDirectories() async {
     try {
-      final libDir = Directory('lib');
-
       if (await libDir.exists()) {
         basePath = libDir.absolute.path;
       } else {
@@ -34,7 +49,11 @@ class DirectoryCreatorImpl implements DirectoryCreatorInterface {
       // core directory
       print('creating core directory...');
       await Directory(absCorePath).create();
-      // await Directory('$absCorePath/$_core').create();
+      // create core sub-directories
+      await Directory('$absCorePath/$error').create();
+      await Directory('$absCorePath/$network').create();
+      await Directory('$absCorePath/$usecases').create();
+      await Directory('$absCorePath/$util').create();
 
       // feature directory
       print('creating feature directory...');
@@ -42,6 +61,8 @@ class DirectoryCreatorImpl implements DirectoryCreatorInterface {
 
       return true;
     } catch (e, s) {
+      stderr.writeln(e);
+      stderr.writeln(s);
       return false;
     }
   }
