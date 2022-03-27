@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:clean_architecture_cli/src/clean_arc_creator_impl.dart';
-import 'package:clean_architecture_cli/src/create_structure/directory_creator/directory_creator_impl.dart';
+import '../clean_arc_creator_impl.dart';
+import '../create_structure/directory_creator/directory_creator_impl.dart';
 
 import 'command_interface.dart';
 
